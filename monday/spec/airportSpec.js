@@ -23,11 +23,21 @@ describe("Airport", function() {
       for (let index = 0; index < 20; index++) {
         airport.landPlane(plane); 
       }
-      
+
       expect(() => airport.landPlane(plane)).toThrow();
+      expect(airport.hangar.length).toEqual(20)
     });
 
     it("should let the ready plane take off", () => {
+      plane = {flightNumber: "01234"}
+      plane2 = {flightNumber: "12345"}
+    
+      for (let index = 0; index < 10; index++) {
+        airport.landPlane(plane); 
+      }
+      airport.landPlane(plane2)
+      airport.takeOff(plane2)
 
+      expect(airport.hangar.filter(plane => plane.flightNumber == "12345").length).toEqual(0)
     });
 });

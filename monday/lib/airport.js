@@ -11,6 +11,10 @@ class Airport {
 
         this.hangar.push(plane)
     }
+
+    takeOff(readyPlane) {
+        this.hangar = this.hangar.filter(plane => plane.flightNumber != readyPlane.flightNumber)
+    }
 }
 
 module.exports = Airport;
